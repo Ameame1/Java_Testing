@@ -1,3 +1,0 @@
-/** Utility classes.
- */
-package utilities;

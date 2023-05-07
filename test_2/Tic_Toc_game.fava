@@ -1,0 +1,55 @@
+import org.junit.Test;
+import org.junit.Assert;
+
+public class TicTacToeTest {
+
+    @Test
+    public void testMarkOnEmptyBoard() {
+        TicTacToe game = new TicTacToe();
+        Assert.assertTrue(game.mark(1, 1, 'X'));
+    }
+
+    @Test
+    public void testMarkOnOccupiedSquare() {
+        TicTacToe game = new TicTacToe();
+        game.mark(1, 1, 'X');
+        Assert.assertFalse(game.mark(1, 1, 'O'));
+    }
+
+    @Test
+    public void testMarkOnInvalidSquare() {
+        TicTacToe game = new TicTacToe();
+        Assert.assertFalse(game.mark(0, 0, 'X'));
+    }
+
+    @Test
+    public void testCheckWinnerOnEmptyBoard() {
+        TicTacToe game = new TicTacToe();
+        Assert.assertFalse(game.checkWinner());
+    }
+
+    @Test
+    public void testCheckWinnerWithNoWinner() {
+        TicTacToe game = new TicTacToe();
+        game.mark(1, 1, 'X');
+        game.mark(1, 2, 'O');
+        game.mark(1, 3, 'X');
+        game.mark(2, 1, 'O');
+        game.mark(2, 2, 'X');
+        game.mark(2, 3, 'O');
+        game.mark(3, 1, 'O');
+        game.mark(3, 2, 'X');
+        game.mark(3, 3, 'O');
+        Assert.assertFalse(game.checkWinner());
+    }
+
+    @Test
+    public void testCheckWinnerWithWinner() {
+        TicTacToe game = new TicTacToe();
+        game.mark(1, 1, 'X');
+        game.mark(2, 2, 'X');
+        game.mark(3, 3, 'X');
+        Assert.assertTrue(game.checkWinner());
+    }
+
+}
